@@ -7,7 +7,9 @@
    <title>Contoh CRUD</title>
    <link rel="stylesheet" href="<?= BASE_PATH ?>/public/bootstrap/dist/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?= BASE_PATH ?>/public/dataTables/css/dataTables.bootstrap.min.css">
-
+   <style>
+   
+   </style>
    <script src="<?= BASE_PATH ?>/public/jquery/jquery-3.1.1.min.js"></script>
 </head>
 <body>

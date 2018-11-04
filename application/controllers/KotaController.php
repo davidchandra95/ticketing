@@ -32,6 +32,29 @@ class KotaController extends MainController {
       $output = array("data" => $data);
       echo json_encode($output);
    }
+
+   public function edit($id) {
+      $query = $this->kota->selectWhere(array('id_kota'=>$id));
+      $data = $this->kota->getResult($query);
+      echo json_encode($data[0]);
+   }
+
+   public function insert() {
+      $data = array();
+      $data['nama_kota'] = $_POST['nama'];
+      $simpan = $this->kota->insert($data);
+   }
+
+   public function update() {
+      $data = array();
+      $data['nama_kota'] = $_POST['nama'];
+      $id = $_POST['id'];
+      $simpan = $this->kota->update($data, array('id_kota' => $id ));
+   }
+
+   public function delete($id) {
+      $hapus = $this->kota->delete(array('id_kota'=>$id));
+   }
 }
 
 ?>

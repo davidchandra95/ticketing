@@ -47,13 +47,13 @@ class Model {
         $query = "SELECT * FROM ".$this->_table;
         if (is_array($condition)) {
             $query .= " WHERE";
-            foreach ($condition as $key => $value) {
+            foreach ($condition as $key => $val) {
                 $query .= " $key='$val' AND";
             }
             $query = substr($query, 0, -3);
         }
 
-        if ($orderyBy != '') $query .= " ORDER BY $orderyBy $order";
+        if ($orderBy != '') $query .= " ORDER BY $orderBy $order";
         if ($limit != '') $query .= " LIMIT $limit";
 
         return $this->query($query);
@@ -63,7 +63,7 @@ class Model {
         $query = "SELECT * FROM ".$this->_table;
         if (is_array($conditions)) {
             $query .= " WHERE";
-            foreach ($conditions as $key => $value) {
+            foreach ($conditions as $key => $val) {
                 $query .= " $key LIKE '$val' OR";
             }
             $query = substr($query, 0, -2);
@@ -83,13 +83,13 @@ class Model {
             }
         }else $query .= " $join $tables";
 
-        foreach ($params as $key => $value) {
+        foreach ($params as $key => $val) {
             $query .= " ON $key = $val";
         }
 
         if (is_array($conditions)) {
             $query .= " WHERE";
-            foreach ($conditions as $key => $value) {
+            foreach ($conditions as $key => $val) {
                 $query .= " $key='$val' AND";
             }
             $query = substr($query, 0, -3);
@@ -106,7 +106,7 @@ class Model {
 
         if (is_array($conditions)) {
             $query .= " WHERE";
-            foreach ($conditions as $key => $value) {
+            foreach ($conditions as $key => $val) {
                 $query .= " $key='$val' AND";
             }
             $query = substr($query, 0, -3);
@@ -117,28 +117,30 @@ class Model {
 
     public function insert($data) {
         $query = "INSERT INTO ".$this->_table." SET";
-        foreach ($data as $key => $value) {
-            $query .= " $key = '$val', ";
+        foreach ($data as $key => $val) {
+            $query .= " $key = '$val',";
         }
         $query = substr($query, 0, -1);
-
+        echo $query;
         return $this->query($query);
     }
 
     public function update($data, $conditions = '') {
         $query = "UPDATE ".$this->_table." SET";
-        foreach ($data as $key => $value) {
-            $query .= " $key = '$val', ";
+        foreach ($data as $key => $val) {
+            $query .= " $key = '$val',";
         }
         $query = substr($query, 0, -1);
-
+        
         if (is_array($conditions)) {
             $query .= " WHERE";
-            foreach ($conditions as $key => $value) {
+            foreach ($conditions as $key => $val) {
                 $query .= " $key = '$val' AND";
             }
             $query = substr($query, 0, -3);
         }
+
+        
 
         return $this->query($query);
     }
